@@ -41,12 +41,10 @@ public void setBombs()
 
 public void draw ()
 {
-    if (status != "win" && status != "loss") {
-        background(0);
-        if(isWon()) {
-            println("WON");
-            displayWinningMessage();
-        }
+    background(0);
+    if(isWon()) {
+        println("WON");
+        displayWinningMessage();
     }
 }
 public boolean isWon()
@@ -108,9 +106,10 @@ public class MSButton
             marked = !marked;
         if (!marked)
             clicked = false;
-        } else if (bombs.contains(this))
+        } else if (bombs.contains(this)) {
+            label = "💥";
             displayLosingMessage();
-        else if (countBombs(r, c) != 0)
+        } else if (countBombs(r, c) != 0)
             label = "" + countBombs(r, c);
         else {
             for (int i = r - 1; i < r + 2; i++)
@@ -122,13 +121,13 @@ public class MSButton
 
     public void draw () 
     {    
-        if (marked)
+        if (marked) //flag
             fill(200, 175, 15);
-        else if( clicked && bombs.contains(this) ) 
+        else if( clicked && bombs.contains(this) ) //bomb
             fill(200, 25, 15);
-        else if( clicked)
+        else if( clicked) //uncovered
             fill( 200 );
-        else 
+        else //covered
             fill( 100 );
 
         rect(x + (width * 0.1), y + (height * 0.1), width * 0.9, height * 0.9, width / 10);
@@ -150,6 +149,8 @@ public class MSButton
             fill(0, 0, 0);
         else if (label.equals("8"))
             fill(128, 128, 128);
+        else if (label.equals("💥"))
+            fill(0, 0, 0);
         text(label,x+(width/1.9),y+(height/2.1));
     }
     public void setLabel(String newLabel)
