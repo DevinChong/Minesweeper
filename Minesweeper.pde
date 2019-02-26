@@ -1,15 +1,20 @@
 import de.bezier.guido.*;
 int NUM_ROWS = 9;
 int NUM_COLS = 9;
-int NUM_BOMBS = 10;
+int NUM_BOMBS = 1;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList(); //ArrayList of just the minesweeper buttons that are mined
+PFont myFont;
+String status;
 
 void setup ()
 {
+    status = "new";
     size(400, 500);
     textAlign(CENTER,CENTER);
     
+    myFont = createFont("Bahnschrift", 10, true);
+    textFont(myFont);
     // make the manager
     Interactive.make( this );
     
@@ -36,10 +41,13 @@ public void setBombs()
 
 public void draw ()
 {
-    background(0);
-    if(isWon())
-        println("WON");
-        displayWinningMessage();
+    if (status != "win" && status != "loss") {
+        background(0);
+        if(isWon()) {
+            println("WON");
+            displayWinningMessage();
+        }
+    }
 }
 public boolean isWon()
 {
@@ -53,11 +61,15 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    text("Better Luck Next Time!", 0, 0);
+    status = "win";
+    fill(255);
+    text("Better Luck Next Time!", width / 2, height - 20);
 }
 public void displayWinningMessage()
 {
-    text("Congratulations!", 0, 0);
+    status = "loss";
+    fill(255);
+    text("Congratulations!", width / 2, height - 20);
 }
 
 public class MSButton
@@ -111,19 +123,34 @@ public class MSButton
     public void draw () 
     {    
         if (marked)
-            fill(0);
+            fill(200, 175, 15);
         else if( clicked && bombs.contains(this) ) 
-            fill(255,0,0);
-        else if(clicked)
+            fill(200, 25, 15);
+        else if( clicked)
             fill( 200 );
         else 
             fill( 100 );
 
         rect(x + (width * 0.1), y + (height * 0.1), width * 0.9, height * 0.9, width / 10);
-        fill(0);
         textSize(width * 0.75);
         textAlign(CENTER, CENTER);
-        text(label,x+width/2,y+(height/2));
+        if (label.equals("1"))
+            fill(0, 0, 128);
+        else if (label.equals("2"))
+            fill(0, 128, 0);
+        else if (label.equals("3"))
+            fill(188, 0, 0);
+        else if (label.equals("4"))
+            fill(128, 44, 24);
+        else if (label.equals("5"))
+            fill(128, 0, 0);
+        else if (label.equals("6"))
+            fill(0, 128, 128);
+        else if (label.equals("7"))
+            fill(0, 0, 0);
+        else if (label.equals("8"))
+            fill(128, 128, 128);
+        text(label,x+(width/1.9),y+(height/2.1));
     }
     public void setLabel(String newLabel)
     {
