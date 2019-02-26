@@ -1,7 +1,7 @@
 import de.bezier.guido.*;
 int NUM_ROWS = 9;
 int NUM_COLS = 9;
-int NUM_BOMBS = 1;
+int NUM_BOMBS = 10;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList(); //ArrayList of just the minesweeper buttons that are mined
 PFont myFont;
@@ -101,21 +101,22 @@ public class MSButton
     
     public void mousePressed () 
     {
-        clicked = true;
-        if (mouseButton == RIGHT) {
+        if (mouseButton == RIGHT && !clicked) {
             marked = !marked;
-        if (!marked)
-            clicked = false;
-        } else if (bombs.contains(this)) {
-            label = "💥";
-            displayLosingMessage();
-        } else if (countBombs(r, c) != 0)
-            label = "" + countBombs(r, c);
-        else {
-            for (int i = r - 1; i < r + 2; i++)
-                for (int j = c - 1; j < c + 2; j++)
-                    if (isValid(i, j) && !buttons[i][j].clicked && !(i == r && j == c))
-                        buttons[i][j].mousePressed();
+            label = "🚩";
+        } else if (mouseButton == LEFT && !marked) {
+            clicked = true;
+            if (bombs.contains(this)) {
+                label = "💥";
+                displayLosingMessage();
+            } else if (countBombs(r, c) != 0)
+                label = "" + countBombs(r, c);
+            else {
+                for (int i = r - 1; i < r + 2; i++)
+                    for (int j = c - 1; j < c + 2; j++)
+                        if (isValid(i, j) && !buttons[i][j].clicked && !(i == r && j == c))
+                            buttons[i][j].mousePressed();
+            }
         }
     }
 
@@ -149,7 +150,7 @@ public class MSButton
             fill(0, 0, 0);
         else if (label.equals("8"))
             fill(128, 128, 128);
-        else if (label.equals("💥"))
+        else if (label.equals("💥") || label.equals("🚩"))
             fill(0, 0, 0);
         text(label,x+(width/1.9),y+(height/2.1));
     }
