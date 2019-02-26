@@ -41,7 +41,7 @@ public void setBombs()
 
 public void draw ()
 {
-    background(0);
+    background(20, 20, 20);
     if(isWon()) {
         println("WON");
         displayWinningMessage();
@@ -152,7 +152,7 @@ public class MSButton
             fill(128, 128, 128);
         else if (label.equals("💥") || label.equals("🚩"))
             fill(0, 0, 0);
-        text(label,x+(width/1.9),y+(height/2.1));
+        text(label,x+(width/2),y+(height/2));
     }
     public void setLabel(String newLabel)
     {
