@@ -4,13 +4,16 @@ int NUM_COLS = 9;
 int NUM_BOMBS = 10;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList(); ; //ArrayList of just the minesweeper buttons that are mined
+private Dashboard dash = new Dashboard();
 PFont myFont;
 int status; //0 is new, 1 is in progress, 2 is loss, 3 is win
+int timer;
+int flagsLeft = NUM_BOMBS;
 
 void setup ()
 {
     status = 0;
-    size(400, 500);
+    size(400, 450);
     textAlign(CENTER,CENTER);
     
     myFont = createFont("Bahnschrift", 10, true);
@@ -42,6 +45,7 @@ public void setBombs()
 public void draw ()
 {
     background(20, 20, 20);
+    dash.draw();
     if(isWon()) {
         status = 3;
     }
@@ -98,8 +102,14 @@ public class MSButton
         }
         if (status == 0 || status == 1) {
             if (mouseButton == RIGHT && !clicked) {
+                if (marked) {
+                    flagsLeft++;
+                    
+                } else {
+                    label = "🚩";
+                    flagsLeft--;
+                }
                 marked = !marked;
-                label = "🚩";
             } else if (mouseButton == LEFT && !marked) {
                 clicked = true;
                 if (bombs.contains(this)) {
@@ -116,7 +126,7 @@ public class MSButton
             }
         }
     }
-    public void draw () 
+    public void draw() 
     {    
         if (marked) //flag
             fill(220, 195, 35);
@@ -182,11 +192,20 @@ public class Dashboard
 {
     //private int
     public void draw() {
-        if (status == 1)
-            text("1", width / 4, height - 10);
-        else if (status == 2)
-            text("2", width / 4, height - 10);
+        fill(35);
+        rect(5, height - 50, width - 10, 45, 5); 
+        fill(255);
+        if (status == 1) {
+            text("🚩 " + flagsLeft, width / 4, height - 32.5);
+            text("⏱ " + flagsLeft, width * 3 / 4, height - 32.5);
+        } else if (status == 2)
+            text("Better Luck Next Time!", width / 2, height - 32.5);
         else if (status == 3)
-            text("3", width / 4, height - 10);
+            text("Congratulations!", width / 2, height - 32.5);
+    }
+
+    public Dashboard()
+    {
+
     }
 }
