@@ -43,9 +43,12 @@ public void draw ()
 {
     background(20, 20, 20);
     if(isWon()) {
-        println("WON");
-        displayWinningMessage();
+        status = 3;
     }
+    if(status == 3)
+        displayWinningMessage();
+    else if(status == 2)
+        displayLosingMessage();
 }
 public boolean isWon()
 {
@@ -59,12 +62,15 @@ public void displayLosingMessage()
 {
     status = 2;
     fill(255);
+    textSize(width * 0.5);
+    println("LOSER");
     text("Better Luck Next Time!", width / 2, height - 20);
 }
 public void displayWinningMessage()
 {
     status = 3;
     fill(255);
+    textSize(width * 0.5);
     text("Congratulations!", width / 2, height - 20);
 }
 
@@ -95,6 +101,10 @@ public class MSButton
     {
         return clicked;
     }
+    public void click()
+    {
+        clicked = true;
+    }
     // called by manager
     
     public void mousePressed () 
@@ -105,41 +115,42 @@ public class MSButton
             } while (countBombs(r, c) != 0);
             status = 1;
         }
-        if (mouseButton == RIGHT && !clicked) {
-            marked = !marked;
-            label = "🚩";
-        } else if (mouseButton == LEFT && !marked) {
-            clicked = true;
-            if (bombs.contains(this)) {
-                label = "💥";
-                displayLosingMessage();
-            } else if (countBombs(r, c) != 0)
-                label = "" + countBombs(r, c);
-            else {
-                for (int i = r - 1; i < r + 2; i++)
-                    for (int j = c - 1; j < c + 2; j++)
-                        if (isValid(i, j) && !buttons[i][j].clicked && !(i == r && j == c))
-                            buttons[i][j].mousePressed();
+        if (status == 0 || status == 1) {
+            if (mouseButton == RIGHT && !clicked) {
+                marked = !marked;
+                label = "🚩";
+            } else if (mouseButton == LEFT && !marked) {
+                clicked = true;
+                if (bombs.contains(this)) {
+                    label = "💥";
+                    status = 2;
+                } else if (countBombs(r, c) != 0)
+                    label = "" + countBombs(r, c);
+                else {
+                    for (int i = r - 1; i < r + 2; i++)
+                        for (int j = c - 1; j < c + 2; j++)
+                            if (isValid(i, j) && !buttons[i][j].clicked && !(i == r && j == c))
+                                buttons[i][j].mousePressed();
+                }
             }
         }
     }
     public void draw () 
     {    
         if (marked) //flag
-            fill(200, 175, 15);
+            fill(220, 195, 35);
         else if( clicked && bombs.contains(this) ) //bomb
             fill(200, 25, 15);
         else if( clicked) //uncovered
             fill(200);
         else //covered
-            fill(100);
+            fill(50, 150, 200);
         noStroke();
         rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); //draws button
         
         //draws label
         if (marked || clicked) {
             textSize(width * 0.75);
-            textAlign(CENTER, CENTER);
             if (label.equals("1"))
                 fill(0, 0, 128);
             else if (label.equals("2"))
@@ -156,8 +167,10 @@ public class MSButton
                 fill(0, 0, 0);
             else if (label.equals("8"))
                 fill(128, 128, 128);
-            else if (label.equals("💥") || label.equals("🚩"))
+            else if (label.equals("💥") || label.equals("🚩")) {
+                textSize(width * 0.5);
                 fill(0, 0, 0);
+            }
             text(label,x+(width/2),y+(height/2));
         }
     }
