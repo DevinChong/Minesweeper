@@ -45,10 +45,6 @@ public void draw ()
     if(isWon()) {
         status = 3;
     }
-    if(status == 3)
-        displayWinningMessage();
-    else if(status == 2)
-        displayLosingMessage();
 }
 public boolean isWon()
 {
@@ -57,21 +53,6 @@ public boolean isWon()
             if (!bombs.contains(buttons[i][j]) && !buttons[i][j].isClicked())
                 return false;
     return true; 
-}
-public void displayLosingMessage()
-{
-    status = 2;
-    fill(255);
-    textSize(width * 0.5);
-    println("LOSER");
-    text("Better Luck Next Time!", width / 2, height - 20);
-}
-public void displayWinningMessage()
-{
-    status = 3;
-    fill(255);
-    textSize(width * 0.5);
-    text("Congratulations!", width / 2, height - 20);
 }
 
 public class MSButton
@@ -194,5 +175,18 @@ public class MSButton
                         numBombs++;
         }
         return numBombs;
+    }
+}
+
+public class Dashboard
+{
+    //private int
+    public void draw() {
+        if (status == 1)
+            text("1", width / 4, height - 10);
+        else if (status == 2)
+            text("2", width / 4, height - 10);
+        else if (status == 3)
+            text("3", width / 4, height - 10);
     }
 }
