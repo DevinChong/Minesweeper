@@ -11,6 +11,7 @@ int status; //0 is new, 1 is in progress, 2 is loss, 3 is win
 void setup ()
 {
     status = 0;
+    noStroke();
     size(400, 450);
     textAlign(CENTER,CENTER);
     myFont = createFont("Bahnschrift", 10, true);

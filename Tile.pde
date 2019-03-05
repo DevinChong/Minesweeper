@@ -87,8 +87,7 @@ public class Tile extends MSButton
             fill(200);
         else //covered
             fill(50, 150, 200);
-        noStroke();
-        rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); //draws button
+        rect(x + (width * 0.05), y + (width * 0.05), width * 0.9, height * 0.9, width / 10); //draws button
         
         //draws label
         if (marked || clicked) {

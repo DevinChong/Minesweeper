@@ -28,7 +28,6 @@ public class MSButton
     public void draw () 
     {    
         fill(75);
-        noStroke();
         rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); 
         textSize(30);
         fill(255);
