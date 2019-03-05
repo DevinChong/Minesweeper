@@ -7,8 +7,8 @@ public class Tile extends MSButton
     
     public Tile ( int rr, int cc )
     {
-        width = 400/NUM_COLS;
-        height = 400/NUM_ROWS;
+        width = (400 - 5)/NUM_COLS;
+        height = (400 - 5)/NUM_ROWS;
         r = rr;
         c = cc; 
         x = c*width;
@@ -87,7 +87,7 @@ public class Tile extends MSButton
             fill(200);
         else //covered
             fill(50, 150, 200);
-        rect(x + (width * 0.05), y + (width * 0.05), width * 0.9, height * 0.9, width / 10); //draws button
+        rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); //draws button
         
         //draws label
         if (marked || clicked) {
