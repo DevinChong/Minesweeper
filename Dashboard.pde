@@ -41,14 +41,14 @@ public class Dashboard
             secondsString = "";
             if (seconds < 10)
                 secondsString += "0";
-            secondsString += seconds;
+            secondsString += (int)seconds;
         }
         fill(45, 45, 45);
         rect(5, height - 50, width - 10, 45, 5); 
         fill(255);
         textSize(25);
         text("🚩 " + flagsLeft, (width / 4) - 20, height - 32.5);
-        text("⏱ " + (int)minutes + ":" + (int)secondsString, (width * 3 / 4) + 20, height - 32.5);
+        text("⏱ " + (int)minutes + ":" + secondsString, (width * 3 / 4) + 20, height - 32.5);
         textSize(15);
         if (status == 2)
             face.setLabel("😖");
