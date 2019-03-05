@@ -31,7 +31,7 @@ public class Dashboard
     }
 
     public void draw() {
-        flagsLeft = NUM_BOMBS - countMarked();
+        /*flagsLeft = NUM_BOMBS - countMarked();
         if (timerRunning) {
             elapMilli = millis() - initMilli;
             minutes = elapMilli / 60000;
@@ -47,7 +47,7 @@ public class Dashboard
         if (status == 2)
             face.setLabel("😖");
         else if (status == 3)
-            face.setLabel("😎");
+            face.setLabel("😎");*/
     }
 
     public int countMarked() {
