@@ -31,7 +31,7 @@ public class Dashboard
     }
 
     public void draw() {
-        /*flagsLeft = NUM_BOMBS - countMarked();
+        flagsLeft = NUM_BOMBS - countMarked();
         if (timerRunning) {
             elapMilli = millis() - initMilli;
             minutes = elapMilli / 60000;
@@ -42,12 +42,12 @@ public class Dashboard
         fill(255);
         textSize(25);
         text("🚩 " + flagsLeft, (width / 4) - 20, height - 32.5);
-        text("⏱ " + minutes + ":" + String.format("%02d", seconds), (width * 3 / 4) + 20, height - 32.5);
+        text("⏱ " + minutes + ":" /* + String.format("%02d", seconds)*/, (width * 3 / 4) + 20, height - 32.5);
         textSize(15);
         if (status == 2)
             face.setLabel("😖");
         else if (status == 3)
-            face.setLabel("😎");*/
+            face.setLabel("😎");
     }
 
     public int countMarked() {

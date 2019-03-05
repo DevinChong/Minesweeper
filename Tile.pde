@@ -114,10 +114,11 @@ public class Tile extends MSButton
                 fill(0, 0, 0);
             }
             text(label,x+(width/2),y+(height/2));
-            if (mousePressed)
-                dash.setLabel("😮");
-            else
-                dash.setLabel("🙂");
+            if (status == 1)
+                if (mousePressed)
+                    dash.setLabel("😮");
+                else
+                    dash.setLabel("🙂");
         }
     }
     public boolean isValid(int r, int c)
