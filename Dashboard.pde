@@ -6,12 +6,14 @@ public class Dashboard
     private boolean timerRunning;
     private int flagsLeft;
     private int minutes, seconds;
+    private String secondsString;
 
     public Dashboard()
     {
         flagsLeft = NUM_BOMBS;
         face = new MSButton((width / 2) - 20, height - 50);
         face.setLabel("🙂");
+        secondsString = new String("00");
     }
 
     public void startTimer()
@@ -36,13 +38,17 @@ public class Dashboard
             elapMilli = millis() - initMilli;
             minutes = elapMilli / 60000;
             seconds = (elapMilli % 60000) / 1000;
+            secondsString = "";
+            if (seconds < 10)
+                secondsString += "0";
+            secondsString += seconds;
         }
         fill(45, 45, 45);
         rect(5, height - 50, width - 10, 45, 5); 
         fill(255);
         textSize(25);
         text("🚩 " + flagsLeft, (width / 4) - 20, height - 32.5);
-        text("⏱ " + minutes + ":" /* + String.format("%02d", seconds)*/, (width * 3 / 4) + 20, height - 32.5);
+        text("⏱ " + minutes + ":" + secondsString, (width * 3 / 4) + 20, height - 32.5);
         textSize(15);
         if (status == 2)
             face.setLabel("😖");
