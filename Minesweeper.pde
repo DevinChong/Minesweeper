@@ -13,12 +13,9 @@ void setup ()
     status = 0;
     size(400, 450);
     textAlign(CENTER,CENTER);
-    
     myFont = createFont("Bahnschrift", 10, true);
     textFont(myFont);
-    // make the manager
     Interactive.make( this );
-
     initialize();
 }
 public void initialize()

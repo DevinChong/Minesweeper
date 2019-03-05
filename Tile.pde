@@ -33,6 +33,7 @@ public class Tile extends MSButton
                 } while (countBombs(r, c) != 0);
                 status = 1;
                 dash.startTimer();
+                firstRun = false;
             }
             for (int i = r - 1; i < r + 2; i++)
                 for (int j = c - 1; j < c + 2; j++)
@@ -41,11 +42,9 @@ public class Tile extends MSButton
         }
         if (status == 1) {
             if (marked) {
-                dash.setFlagsLeft(dash.getFlagsLeft() + 1);
                 label = "";
                 marked = !marked;
             } else if(mouseButton == RIGHT && !clicked) {
-                dash.setFlagsLeft(dash.getFlagsLeft() - 1);
                 label = "🚩";
                 marked = !marked;
             } else if (mouseButton == LEFT && !marked) {
