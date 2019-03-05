@@ -11,7 +11,7 @@ public class Dashboard
     public Dashboard()
     {
         flagsLeft = NUM_BOMBS;
-        face = new MSButton((width / 2) - 20, height - 50);
+        face = new MSButton((width / 2) - 20, height - 47);
         face.setLabel("🙂");
         secondsString = new String("00");
     }
@@ -44,11 +44,11 @@ public class Dashboard
             secondsString += (int)seconds;
         }
         fill(45, 45, 45);
-        rect(5, height - 50, width - 10, 45, 5); 
+        rect(2, height - 47.5, width - 4, 45, 5); 
         fill(255);
         textSize(25);
-        text("🚩 " + flagsLeft, (width / 4) - 20, height - 27.5);
-        text("⏱ " + (int)minutes + ":" + secondsString, (width * 3 / 4) + 20, height - 27.5);
+        text("🚩 " + flagsLeft, (width / 4) - 20, height - 26.5);
+        text("⏱ " + (int)minutes + ":" + secondsString, (width * 3 / 4) + 20, height - 26.5);
         textSize(15);
         if (status == 2)
             face.setLabel("😖");
