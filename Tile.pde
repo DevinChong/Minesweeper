@@ -33,7 +33,6 @@ public class Tile extends MSButton
                 } while (countBombs(r, c) != 0);
                 status = 1;
                 dash.startTimer();
-                firstRun = false;
             }
             for (int i = r - 1; i < r + 2; i++)
                 for (int j = c - 1; j < c + 2; j++)
