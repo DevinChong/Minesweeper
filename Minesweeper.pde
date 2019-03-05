@@ -7,12 +7,9 @@ private ArrayList <Tile> bombs; //ArrayList of just the minesweeper buttons that
 private Dashboard dash;
 PFont myFont;
 int status; //0 is new, 1 is in progress, 2 is loss, 3 is win
-int time;
-int flagsLeft = NUM_BOMBS;
 
 void setup ()
 {
-    //time = millis();//store the current time
     status = 0;
     size(400, 450);
     textAlign(CENTER,CENTER);
@@ -39,10 +36,8 @@ public void setBombs()
     for (int i = 0; i < NUM_BOMBS; i++){
         int row = (int)(Math.random() * NUM_ROWS);
         int col = (int)(Math.random() * NUM_COLS);
-        if (!bombs.contains(buttons[row][col])){
+        if (!bombs.contains(buttons[row][col]))
             bombs.add(buttons[row][col]);
-            println(row + ", " + col);
-        }
         else
             i--;
     }
@@ -55,6 +50,8 @@ public void draw ()
     if(isWon()) {
         status = 3;
     }
+    if (status == 2 || status == 3)
+        dash.stopTimer();
 }
 public boolean isWon()
 {

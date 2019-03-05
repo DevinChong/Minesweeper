@@ -27,25 +27,38 @@ public class Tile extends MSButton
     public void mousePressed () 
     {  
         if (status == 0) {
-            do {
-                setBombs();
-            } while (countBombs(r, c) != 0);
-            status = 1;
+            if (mouseButton == LEFT) {
+                do {
+                    setBombs();
+                } while (countBombs(r, c) != 0);
+                status = 1;
+                dash.startTimer();
+            }
+            for (int i = r - 1; i < r + 2; i++)
+                for (int j = c - 1; j < c + 2; j++)
+                    if (isValid(i, j) && !buttons[i][j].clicked && !(i == r && j == c))
+                        buttons[i][j].mousePressed();
         }
-        if (status == 0 || status == 1) {
-            
+        if (status == 1) {
             if (marked) {
-                flagsLeft++;
+                dash.setFlagsLeft(dash.getFlagsLeft() + 1);
                 label = "";
                 marked = !marked;
             } else if(mouseButton == RIGHT && !clicked) {
+                dash.setFlagsLeft(dash.getFlagsLeft() - 1);
                 label = "🚩";
-                flagsLeft--;
                 marked = !marked;
             } else if (mouseButton == LEFT && !marked) {
                 clicked = true;
                 if (bombs.contains(this)) {
                     label = "💥";
+                    for (int i = 0; i < buttons.length; i++)
+                        for (int j = 0; j < buttons[i].length; j++)
+                            if (!buttons[i][j].clicked && bombs.contains(buttons[i][j])) {
+                                if (buttons[i][j].isMarked())
+                                    buttons[i][j].mousePressed();
+                                buttons[i][j].mousePressed();
+                            }
                     status = 2;
                 } else if (countBombs(r, c) != 0)
                     label = "" + countBombs(r, c);
@@ -103,6 +116,10 @@ public class Tile extends MSButton
                 fill(0, 0, 0);
             }
             text(label,x+(width/2),y+(height/2));
+            if (mousePressed)
+                dash.setLabel("😮");
+            else
+                dash.setLabel("🙂");
         }
     }
     public boolean isValid(int r, int c)
