@@ -1,7 +1,7 @@
 import de.bezier.guido.*;
-int NUM_ROWS = 9;
-int NUM_COLS = 9;
-int NUM_BOMBS = 10;
+int NUM_ROWS = 16;
+int NUM_COLS = 16;
+int NUM_BOMBS = 40;
 private Tile[][] buttons; //2d array of minesweeper buttons
 private ArrayList <Tile> bombs; //ArrayList of just the minesweeper buttons that are mined
 private Dashboard dash;
