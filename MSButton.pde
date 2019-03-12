@@ -1,29 +1,9 @@
-public class MSButton
+abstract class MSButton
 {
-    private float x,y, width, height;
-    private String label;
-
-    public MSButton ()
-    {
-
-    }
-
-    public MSButton (int xx, int yy)
-    {
-        label = "";
-        x = xx;
-        y = yy;
-        width = 40;
-        height = 40;
-        Interactive.add( this ); // register it with the manager
-    }
+    protected float x,y, width, height;
+    protected String label;
     
-    public void mousePressed () 
-    {
-        //setup();
-        status = 0;
-        initialize();
-    }
+    abstract public void mousePressed ();
 
     public void draw () 
     {    
@@ -37,5 +17,4 @@ public class MSButton
     {
         label = newLabel;
     }
-
 }

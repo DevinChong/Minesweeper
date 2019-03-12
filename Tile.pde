@@ -7,8 +7,8 @@ public class Tile extends MSButton
     
     public Tile ( int rr, int cc )
     {
-        width = (400 - 5)/NUM_COLS;
-        height = (400 - 5)/NUM_ROWS;
+        width = (SCREEN_WIDTH - 5)/numCols;
+        height = (SCREEN_HEIGHT - 55)/numRows;
         r = rr;
         c = cc; 
         x = c*width;
@@ -78,51 +78,53 @@ public class Tile extends MSButton
         return clicked;
     }
     public void draw() 
-    {    
-        if (marked) //flag
-            fill(220, 195, 35);
-        else if( clicked && bombs.contains(this) ) //bomb
-            fill(200, 25, 15);
-        else if( clicked) //uncovered
-            fill(200);
-        else //covered
-            fill(50, 150, 200);
-        rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); //draws button
-        
-        //draws label
-        if (marked || clicked) {
-            textSize(width * 0.75);
-            if (label.equals("1"))
-                fill(0, 0, 128);
-            else if (label.equals("2"))
-                fill(0, 128, 0);
-            else if (label.equals("3"))
-                fill(188, 0, 0);
-            else if (label.equals("4"))
-                fill(128, 44, 24);
-            else if (label.equals("5"))
-                fill(128, 0, 0);
-            else if (label.equals("6"))
-                fill(0, 128, 128);
-            else if (label.equals("7"))
-                fill(0, 0, 0);
-            else if (label.equals("8"))
-                fill(128, 128, 128);
-            else if (label.equals("💥") || label.equals("🚩")) {
-                textSize(width * 0.5);
-                fill(0, 0, 0);
+    {   
+        if (status != -1) { 
+            if (marked) //flag
+                fill(220, 195, 35);
+            else if( clicked && bombs.contains(this) ) //bomb
+                fill(200, 25, 15);
+            else if( clicked) //uncovered
+                fill(200);
+            else //covered
+                fill(50, 150, 200);
+            rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); //draws button
+            
+            //draws label
+            if (marked || clicked) {
+                textSize(width * 0.75);
+                if (label.equals("1"))
+                    fill(0, 0, 128);
+                else if (label.equals("2"))
+                    fill(0, 128, 0);
+                else if (label.equals("3"))
+                    fill(188, 0, 0);
+                else if (label.equals("4"))
+                    fill(128, 44, 24);
+                else if (label.equals("5"))
+                    fill(128, 0, 0);
+                else if (label.equals("6"))
+                    fill(0, 128, 128);
+                else if (label.equals("7"))
+                    fill(0, 0, 0);
+                else if (label.equals("8"))
+                    fill(128, 128, 128);
+                else if (label.equals("💥") || label.equals("🚩")) {
+                    textSize(width * 0.5);
+                    fill(0, 0, 0);
+                }
+                text(label,x+(width/2),y+(height/2));
+                if (status == 1)
+                    if (mousePressed)
+                        dash.setLabel("😮");
+                    else
+                        dash.setLabel("🙂");
             }
-            text(label,x+(width/2),y+(height/2));
-            if (status == 1)
-                if (mousePressed)
-                    dash.setLabel("😮");
-                else
-                    dash.setLabel("🙂");
         }
     }
     public boolean isValid(int r, int c)
     {
-        if (r < NUM_ROWS && r >= 0 && c < NUM_COLS && c >= 0)
+        if (r < numRows && r >= 0 && c < numCols && c >= 0)
             return true;
         return false;
     }
