@@ -32,15 +32,10 @@ public class Dashboard
         timerRunning = false;
     }
 
-    public void setLabel(String label)
-    {
-        face.setLabel(label);
-    }
-
     public void draw() {
         if (status == -1) {
-            textSize(30);
-            text("select difficulty", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 4);
+            textSize(20);
+            text("select difficulty", SCREEN_WIDTH / 2, SCREEN_HEIGHT - 110);
         } else {
             flagsLeft = numBombs - countMarked();
             if (timerRunning) {
@@ -59,12 +54,15 @@ public class Dashboard
             text("🚩 " + flagsLeft, (SCREEN_WIDTH / 4) - 20, SCREEN_HEIGHT - 26.5);
             text("⏱ " + (int)minutes + ":" + secondsString, (SCREEN_WIDTH * 3 / 4) + 20, SCREEN_HEIGHT - 26.5);
             textSize(15);
-            if (status == 2)
-                face.setLabel("😖");
+            if (status == 1) {
+                if (mousePressed)
+                    face.setLabel("😮");
+                else
+                    face.setLabel("🙂");
+            } else if (status == 2)
+                    face.setLabel("😖");
             else if (status == 3)
-                face.setLabel("😎");
-            else
-                face.setLabel("🙂");
+                    face.setLabel("😎");
         }
     }
 

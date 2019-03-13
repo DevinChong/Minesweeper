@@ -25,7 +25,7 @@ public class LevelButton extends MSButton
             label3 = "24 x 24";
             label2 = "EXPERT";
         }
-        y = (SCREEN_HEIGHT / 2) - 45;
+        y = SCREEN_HEIGHT - 100;
         label = "";
         width = 120;
         height = 90;

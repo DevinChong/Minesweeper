@@ -17,4 +17,8 @@ abstract class MSButton
     {
         label = newLabel;
     }
+
+    public String getLabel() {
+        return label;
+    }
 }
