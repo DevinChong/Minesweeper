@@ -4,7 +4,7 @@ public class FaceButton extends MSButton
 
     public FaceButton()
     {
-        label = "a";
+        label = "🙂";
         x = (SCREEN_WIDTH / 2) - 20;
         y = SCREEN_HEIGHT - 47;
         width = 40;
