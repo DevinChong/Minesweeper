@@ -40,7 +40,7 @@ public class LevelButton extends MSButton
             fill(255);
             textSize(30);
             text(label3, x+(width/2) + 6, y + (height/2) + 5);
-            textSize(15);
+            textSize(12);
             text(label2, x+(width/2) + 6, y + (height/4) + 5);
             text(label4, x+(width/2) + 6, y + 3 * (height/4) + 8);
         }

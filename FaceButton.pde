@@ -25,6 +25,5 @@ public class FaceButton extends MSButton
         textSize(30);
         fill(255);
         text(label, x+(width/2),y+(height/2));
-        println(label);
     }
 }

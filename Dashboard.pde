@@ -1,5 +1,6 @@
 public class Dashboard
 {
+    private PImage bomb;
     private MSButton face;
     private MSButton beginner;
     private MSButton intermediate;
@@ -13,6 +14,7 @@ public class Dashboard
 
     public Dashboard()
     {
+        bomb = loadImage("bomb.png");
         flagsLeft = numBombs;
         face = new FaceButton();
         beginner = new LevelButton(1);
@@ -34,6 +36,7 @@ public class Dashboard
 
     public void draw() {
         if (status == -1) {
+            image(bomb, 0, 0, Math.min(SCREEN_WIDTH, SCREEN_HEIGHT), Math.min(SCREEN_WIDTH, SCREEN_HEIGHT));
             textSize(20);
             text("select difficulty", SCREEN_WIDTH / 2, SCREEN_HEIGHT - 110);
         } else {
