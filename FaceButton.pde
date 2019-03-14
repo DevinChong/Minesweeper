@@ -14,7 +14,7 @@ public class FaceButton extends MSButton
 
     public void mousePressed () 
     {
-        if (status != 1) {
+        if (status != -1) {
             status = 0;
             initialize();
         }
@@ -22,7 +22,7 @@ public class FaceButton extends MSButton
 
     public void draw()
     {
-        if (status != 1) {
+        if (status != -1) {
             fill(75);
             rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); 
             textSize(30);
