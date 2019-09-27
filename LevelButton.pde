@@ -13,7 +13,7 @@ public class LevelButton extends MSButton
             x = (SCREEN_WIDTH / 5) - 67;
             label4 = "10 bombs";
             label3 = "9 x 9";
-            label2 = "BEGINNER";
+            label2 = "NOOB";
         } else if (level == 2) {
             x = (SCREEN_WIDTH / 2) - 67;
             label4 = "40 bombs";
@@ -36,7 +36,7 @@ public class LevelButton extends MSButton
     {
         if (status == -1) {
             fill(75);
-            rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 10); 
+            rect(x + (width * 0.1), y + (width * 0.1), width * 0.9, height * 0.9, width / 90); 
             fill(255);
             textSize(30);
             text(label3, x+(width/2) + 6, y + (height/2) + 5);
